@@ -21,15 +21,11 @@ SearchProducts - это Java-приложение, которое позволя
 
 ### Инструкция
 
-1. Клонируйте репозиторий:
-git clone https://github.com/qeliathus/Search-Products
-cd <имя_папки_репозитория>
-
-2. Постройте Docker-образ:
+1. Постройте Docker-образ:
 docker build -t search-products-app .
 
-3. Запустите Docker Compose:
+2. Запустите Docker Compose:
 docker-compose up
 
-4. После запуска всех сервисов, приложение должно быть доступно по адресу:
+3. После запуска всех сервисов, приложение должно быть доступно по адресу:
 http://localhost:8080
