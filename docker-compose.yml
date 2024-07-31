@@ -21,6 +21,19 @@ services:
     volumes:
       - esdata:/usr/share/elasticsearch/data
 
+  app:
+    build: .
+    depends_on:
+      - postgres
+      - elasticsearch
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/productdb
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_ELASTICSEARCH_REST_URIS: http://elasticsearch:9200
+
 volumes:
   pgdata:
   esdata:
