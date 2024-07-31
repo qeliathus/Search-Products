@@ -3,9 +3,6 @@ package by.potapchuk.SearchProducts.service;
 import by.potapchuk.SearchProducts.core.entity.Product;
 import by.potapchuk.SearchProducts.core.entity.Sku;
 import by.potapchuk.SearchProducts.repository.ProductRepository;
-import jakarta.annotation.PostConstruct;
-import org.elasticsearch.action.index.IndexRequest;
-import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.RequestOptions;
@@ -42,7 +39,6 @@ public class DataLoaderService {
             productMap.put("active", product.getActive());
             productMap.put("startDate", product.getStartDate());
 
-            // Обработка SKU
             List<Map<String, Object>> skuList = skus.stream().map(sku -> {
                 Map<String, Object> skuMap = new HashMap<>();
                 skuMap.put("id", sku.getId());
@@ -55,7 +51,6 @@ public class DataLoaderService {
 
             productMap.put("skus", skuList);
 
-            // Использование UpdateRequest для обновления существующих данных
             UpdateRequest updateRequest = new UpdateRequest("products", product.getId().toString())
                     .doc(productMap)
                     .upsert(productMap);

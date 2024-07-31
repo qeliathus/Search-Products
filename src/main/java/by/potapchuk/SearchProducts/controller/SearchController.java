@@ -1,15 +1,14 @@
 package by.potapchuk.SearchProducts.controller;
 
 import by.potapchuk.SearchProducts.core.dto.ProductDto;
-import by.potapchuk.SearchProducts.core.entity.Product;
 import by.potapchuk.SearchProducts.service.DtoMapperService;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
