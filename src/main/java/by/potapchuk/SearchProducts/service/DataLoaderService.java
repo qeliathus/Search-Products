@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class DataLoaderService {
+
     private final ProductRepository productRepository;
     private final RestHighLevelClient client;
 
