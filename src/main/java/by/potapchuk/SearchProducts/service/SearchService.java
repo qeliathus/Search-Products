@@ -8,7 +8,6 @@ import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -20,11 +19,13 @@ import java.util.Map;
 
 @Service
 public class SearchService {
-    @Autowired
-    private RestHighLevelClient client;
+    private final RestHighLevelClient client;
+    private final DtoMapperService dtoMapperService;
 
-    @Autowired
-    private DtoMapperService dtoMapperService;
+    public SearchService(RestHighLevelClient client, DtoMapperService dtoMapperService) {
+        this.client = client;
+        this.dtoMapperService = dtoMapperService;
+    }
 
     public List<ProductDto> searchProducts(String query) throws IOException {
         List<ProductDto> results = new ArrayList<>();

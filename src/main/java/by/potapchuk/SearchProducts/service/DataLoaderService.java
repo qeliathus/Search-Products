@@ -7,7 +7,6 @@ import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,11 +18,13 @@ import java.util.stream.Collectors;
 
 @Service
 public class DataLoaderService {
-    @Autowired
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
+    private final RestHighLevelClient client;
 
-    @Autowired
-    private RestHighLevelClient client;
+    public DataLoaderService(ProductRepository productRepository, RestHighLevelClient client) {
+        this.productRepository = productRepository;
+        this.client = client;
+    }
 
     @Transactional(readOnly = true)
     public void loadDataToElasticsearch() {

@@ -2,7 +2,6 @@ package by.potapchuk.SearchProducts.controller;
 
 import by.potapchuk.SearchProducts.core.dto.ProductDto;
 import by.potapchuk.SearchProducts.service.SearchService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,8 +14,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/search")
 public class SearchController {
-    @Autowired
-    private SearchService searchService;
+    private final SearchService searchService;
+
+    public SearchController(SearchService searchService) {
+        this.searchService = searchService;
+    }
 
     @GetMapping
     public ResponseEntity<List<ProductDto>> searchProducts(@RequestParam String query) {
